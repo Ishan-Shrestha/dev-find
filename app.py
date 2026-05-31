@@ -1,5 +1,6 @@
-import requests
 import logging
+from flask import Flask, request, jsonify
+from fetch import get_data
 
 # LOGGER CONFIG
 logging.basicConfig(
@@ -9,26 +10,23 @@ logging.basicConfig(
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# VARIABLES
-API= 'https://remoteok.com/api'
+# FLASK APP SETUP
+app = Flask(__name__)
 
-# LOGICAL FUNCTIONS
-def get_data():
-    logger.info("Attempting to retrieve data!")
-    try:
-        response = requests.get(API, timeout=5)
-        logger.info("Data retrieved successfully!")
-        return response.json()
-    except Exception as e:
-        logger.exception("Failed to retrieve data")
-        return f"Unexpected error occured: {e}"
-    
-data = get_data()
-n = int(input('Specify the number of jobs to list: '))
-for i in range(1,n+1):
-    print('Job Description:')
-    print(f'Position: {data[i]["position"]}')
-    if data[i].get("tags"):
-        print(f'Specifications: {', '.join(data[i]["tags"])}')
-    else:
-        print(f'Specifications:No tags found.')
+# ROUTES 
+@app.route('/api/jobs')
+def get_jobs():
+    limit = request.args.get('n', default=10, type=int)
+    data = get_data()
+    requested_data = []
+    for i in range(1, limit+1):
+        if data[i].get("tags"):
+            tempt = {"position":data[i]["position"], "tags":data[i]["tags"]}
+        else:
+            tempt = {"position":data[i]["position"], "tags":"No tags found."}
+        requested_data.append(tempt)
+    return jsonify(requested_data)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

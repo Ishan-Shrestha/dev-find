@@ -1,0 +1,51 @@
+2026-05-31 22:30:40,729 INFO: Attempting to retrieve data!
+2026-05-31 22:30:40,731 DEBUG: Starting new HTTPS connection (1): remoteok.com:443
+2026-05-31 22:30:40,869 DEBUG: https://remoteok.com:443 "GET /api HTTP/1.1" 200 None
+2026-05-31 22:30:40,885 INFO: Data retrieved successfully!
+2026-05-31 22:31:35,621 INFO: Attempting to retrieve data!
+2026-05-31 22:31:35,622 DEBUG: Starting new HTTPS connection (1): remoteok.com:443
+2026-05-31 22:31:35,743 DEBUG: https://remoteok.com:443 "GET /api HTTP/1.1" 200 None
+2026-05-31 22:31:35,754 INFO: Data retrieved successfully!
+2026-05-31 22:32:06,505 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-31 22:32:06,505 INFO: [33mPress CTRL+C to quit[0m
+2026-05-31 22:32:06,506 INFO:  * Restarting with stat
+2026-05-31 22:32:06,757 WARNING:  * Debugger is active!
+2026-05-31 22:32:06,769 INFO:  * Debugger PIN: 584-549-878
+2026-05-31 22:32:16,121 INFO: Attempting to retrieve data!
+2026-05-31 22:32:16,124 DEBUG: Starting new HTTPS connection (1): remoteok.com:443
+2026-05-31 22:32:16,253 DEBUG: https://remoteok.com:443 "GET /api HTTP/1.1" 200 None
+2026-05-31 22:32:16,270 INFO: Data retrieved successfully!
+2026-05-31 22:32:16,277 INFO: 127.0.0.1 - - [31/May/2026 22:32:16] "GET /api/jobs?n=5 HTTP/1.1" 200 -
+2026-05-31 22:32:16,392 INFO: 127.0.0.1 - - [31/May/2026 22:32:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-31 22:32:27,127 INFO: 127.0.0.1 - - [31/May/2026 22:32:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-31 22:33:17,017 INFO:  * Detected change in '/home/ishan/repos/dev-find/app.py', reloading
+2026-05-31 22:33:17,073 INFO:  * Restarting with stat
+2026-05-31 22:33:23,744 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-31 22:33:23,744 INFO: [33mPress CTRL+C to quit[0m
+2026-05-31 22:33:23,745 INFO:  * Restarting with stat
+2026-05-31 22:33:23,972 WARNING:  * Debugger is active!
+2026-05-31 22:33:23,974 INFO:  * Debugger PIN: 584-549-878
+2026-05-31 22:33:26,542 INFO: 127.0.0.1 - - [31/May/2026 22:33:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-31 22:34:18,156 INFO:  * Detected change in '/home/ishan/repos/dev-find/app.py', reloading
+2026-05-31 22:34:18,217 INFO:  * Restarting with stat
+2026-05-31 22:34:18,472 WARNING:  * Debugger is active!
+2026-05-31 22:34:18,480 INFO:  * Debugger PIN: 584-549-878
+2026-05-31 22:34:20,494 INFO:  * Detected change in '/home/ishan/repos/dev-find/app.py', reloading
+2026-05-31 22:34:20,548 INFO:  * Restarting with stat
+2026-05-31 22:34:20,785 WARNING:  * Debugger is active!
+2026-05-31 22:34:20,788 INFO:  * Debugger PIN: 584-549-878
+2026-05-31 22:34:26,097 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-31 22:34:26,098 INFO: [33mPress CTRL+C to quit[0m
+2026-05-31 22:34:26,098 INFO:  * Restarting with stat
+2026-05-31 22:34:26,327 WARNING:  * Debugger is active!
+2026-05-31 22:34:26,329 INFO:  * Debugger PIN: 584-549-878
+2026-05-31 22:34:29,464 INFO: 127.0.0.1 - - [31/May/2026 22:34:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-31 22:34:31,491 INFO: Attempting to retrieve data!
+2026-05-31 22:34:31,493 DEBUG: Starting new HTTPS connection (1): remoteok.com:443
+2026-05-31 22:34:31,636 DEBUG: https://remoteok.com:443 "GET /api HTTP/1.1" 200 None
+2026-05-31 22:34:31,650 INFO: Data retrieved successfully!
+2026-05-31 22:34:31,655 INFO: 127.0.0.1 - - [31/May/2026 22:34:31] "GET /api/jobs?n=5 HTTP/1.1" 200 -
+2026-05-31 22:34:31,691 INFO: 127.0.0.1 - - [31/May/2026 22:34:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
