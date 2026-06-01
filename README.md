@@ -1,29 +1,20 @@
 # dev-find
-A Developer Job Intelligence Dashboard
----
+A minimal Flask service that fetches developer job listings from RemoteOK.
 
-### Features:
-- Logger
-- Fetch the job with it's specifications 
-
-### To use:
-- Install dependencies:
-
-```cli
-    pip install -r requirements.txt
+## Quick start
+1. Install dependencies:
+```bash
+pip install -r requirement.txt
+```
+2. Run the app:
+```bash
+python3 app.py
 ```
 
-### File Heirarchy:
+## Endpoints
+- `/api/jobs?n=<number>` — returns up to `<number>` jobs with position and tags
+- `/api/skills` — returns skill counts aggregated from job tags
 
-```text
-dev-find/
-├── .gitignore
-├── app.py
-├── README.md 
-└── requirement.txt
-```
-
-### APIs Used:
-```text
-API= 'https://remoteok.com/api'
-```
+## Notes
+- Uses RemoteOK API: `https://remoteok.com/api`
+- Logs are written to `info.log`
