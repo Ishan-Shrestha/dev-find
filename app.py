@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, request, jsonify
 from fetch import get_data
+from collections import Counter
 
 # LOGGER CONFIG
 logging.basicConfig(
@@ -27,6 +28,19 @@ def get_jobs():
         requested_data.append(tempt)
     return jsonify(requested_data)
 
+@app.route('/api/skills')
+def get_skills():
+    data = get_data()
+    skill_set = [ skill
+        for dict in data
+        for skill in dict.get('tags', [])
+    ]
+    skill_count = Counter(skill_set)
+    sorted_data = [
+        {'skill':skill, 'count':count}
+        for skill, count in skill_count.most_common()
+    ]
+    return jsonify(sorted_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

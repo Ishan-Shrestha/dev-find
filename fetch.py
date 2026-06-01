@@ -23,10 +23,11 @@ def get_data():
         logger.exception("Failed to retrieve data")
         return f"Unexpected error occured: {e}"
     
-# # TEST 
+# TEST 
 # data = get_data()
 # n = int(input('Specify the number of jobs to list: '))
 # for i in range(1,n+1):
+#     print(data)
 #     print('Job Description:')
 #     print(f'Position: {data[i]["position"]}')
 #     if data[i].get("tags"):
