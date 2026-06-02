@@ -42,5 +42,16 @@ def get_skills():
     ]
     return jsonify(sorted_data)
 
+@app.route('/api/jobs/search')
+def search_job():
+    specification = request.args.get('query', type=str).lower()
+    data = get_data()
+    required_data = []
+    for job in data:
+        if job.get("position", '').lower()== specification or any(specification == tag.lower() for tag in job.get("tags",[])):
+            temp = {"position":job["position"], "tags":job["tags"]}
+            required_data.append(temp)
+    return jsonify(required_data)      
+
 if __name__ == '__main__':
     app.run(debug=True)
