@@ -1,5 +1,5 @@
 import logging
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from fetch import get_data
 from collections import Counter
 
@@ -15,6 +15,10 @@ logger.setLevel(logging.DEBUG)
 app = Flask(__name__)
 
 # ROUTES 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/api/jobs')
 def get_jobs():
     limit = request.args.get('n', default=10, type=int)
