@@ -46,7 +46,7 @@ def get_skills():
     ]
     return jsonify(sorted_data)
 
-@app.route('/api/jobs/search')
+@app.route('/api/jobs/search/')
 def search_job():
     specification = request.args.get('query', type=str).lower()
     data = get_data()

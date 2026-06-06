@@ -6,27 +6,68 @@
     <title>Chart</title>
 </head>
 <body>
-    <div>
-    <canvas id="myChart"></canvas>
-    </div>
+    <header>DevRadar: FIND THE JOB THAT DESERVES YOU!</header>
+    <main>
+        <div id="drag-down">
+            <form id="drag-down">
+                <div class="chart-window">
+                <label for="data-points">No of data:</label>
+                    <div>
+                        <select name="data-points" id="data-points" class="form-select">
+                            <option value=10 checked>10</option>
+                            <option value=20 >20</option>
+                            <option value=50 >50</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="show-butt" type="submit">SEE</button>
+            </form>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <!-- conatainer for search bar -->
+        <div id="search">
+            <form>
+                <!-- supposed seqarch bar -->
+                <input type="text" placeholder="Search a job" id="job-val">
+                <button type="submit">Search</button>
+            </form>
+            <div id="query-val">
+
+            </div>
+        </div>
+    </main>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
     const ctx = document.getElementById('myChart');
+    let myChartInstance= null
 
-    async function prepare_chart() {
+    async function prepare_chart(event) {
+        event.preventDefault();
         try{
-        const response = await fetch('/api/skills')
+        const response = await fetch('/api/skills');
+        const data_point = document.getElementById('data-points');
+        const data_value = parseInt(data_point.value, 10)
         if (!response.ok){
             console.log(`HTML STATUS ERROR: ${response.status}`)
             throw new Error(`HTML STATUS ERROR: ${response.status}`)
         } 
         const rawData = await response.json()
-        const requiredData = rawData.slice(0,20)
+        const requiredData = rawData.slice(0,data_value)
         const chartLabel = requiredData.map(item => item.skill)
         const chartValues = requiredData.map(item => item.count)
-        new Chart(ctx, {
+
+        if (myChartInstance) {
+            myChartInstance.destroy();
+        }
+
+        myChartInstance= new Chart(ctx, {
             type: 'bar',
             data: {
             labels: chartLabel,
@@ -50,7 +91,47 @@
         }
     }
 
-    prepare_chart()
+    // function by search
+    async function search_route(event) {
+        event.preventDefault();
+        try{
+            const job_val = document.getElementById('job-val')
+            const searchQuery = job_val.value || job_val.textContent;
+            const response = await fetch(`/api/jobs/search/?query=${encodeURIComponent(searchQuery)}`)
+            if (!response.ok){
+            console.log(`HTML STATUS ERROR: ${response.status}`)
+            throw new Error(`HTML STATUS ERROR: ${response.status}`)
+            } 
+            const rawData = await response.json()
+            const output= document.getElementById('query-val')
+            rawData.forEach(group => {
+                const header = document.createElement('h2')
+                header.textContent = group.position
+                output.append(header)
+                const ul = document.createElement('ul')
+                group.tags.forEach(
+                    item=>{
+                        const li = document.createElement('li')
+                        li.textContent = item
+                        ul.appendChild(li)
+                    }
+                )
+                output.appendChild(ul)
+            })
+            
+        }
+        catch(error){
+            console.log("Fetch operation failed:",error)
+        }
+        
+    }
+
+    const drag_down = document.getElementById('drag-down');
+    drag_down.addEventListener('submit', prepare_chart);
+
+    const search = document.getElementById('search');
+    search.addEventListener('submit', search_route);
+
     </script>
 
 </body>
