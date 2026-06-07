@@ -1,0 +1,50 @@
+body{
+    background-color: #24273a;
+    color: #cad3f5;
+    font-family: fantasy, 'Copperplate';
+}
+
+header{
+    color: #c6a0f6;
+    text-align: center;
+    font-family: monospace, 'Courier New', Courier, monospace;
+    font-size: xx-large;
+    margin-bottom: 70px;
+}
+
+#chartContainer {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#data-points{
+    background-color: #f0c6c6;
+    display: flex;
+}
+
+#drag-down{
+    color: #8bd5ca;
+    font-size: 22px;
+}
+
+#drag-down-form .chart-window{
+    display: flex;
+    gap: 10px;
+}
+
+#drag-down-form button label #data-points{
+    display: flex;
+    align-items: center;
+}
+
+#job-val{
+    background-color: #7dc4e4;
+    color: #24273a;
+    font-weight: bold;
+}
+
+#show-butt, #search-butt{
+    background-color: #a6da95;
+    color: #24273a;
+    font-weight: bold;
+}

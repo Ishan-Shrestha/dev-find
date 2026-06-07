@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <header>DevRadar: FIND THE JOB THAT DESERVES YOU!</header>
     <main>
         <div id="drag-down">
-            <form id="drag-down">
+            <form id="drag-down-form">
                 <div class="chart-window">
                 <label for="data-points">No of data:</label>
-                    <div>
+                <button id="show-butt" type="submit">SEE</button>
+                    <div id="drag-down-menu">
                         <select name="data-points" id="data-points" class="form-select">
-                            <option value=10 checked>10</option>
-                            <option value=20 >20</option>
-                            <option value=50 >50</option>
-                        </select>
+                            <optgroup label="Numbers Group"> 
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </optgroup>
+                    </select>
                     </div>
                 </div>
-                <button id="show-butt" type="submit">SEE</button>
             </form>
-            <div>
+            <div id="chartContainer" style="display: none;">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
@@ -32,7 +35,7 @@
             <form>
                 <!-- supposed seqarch bar -->
                 <input type="text" placeholder="Search a job" id="job-val">
-                <button type="submit">Search</button>
+                <button type="submit" id="search-butt">Search</button>
             </form>
             <div id="query-val">
 
@@ -47,13 +50,14 @@
     <script>
     const ctx = document.getElementById('myChart');
     let myChartInstance= null
-
+    
     async function prepare_chart(event) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         try{
         const response = await fetch('/api/skills');
         const data_point = document.getElementById('data-points');
         const data_value = parseInt(data_point.value, 10)
+        const chartContainer = document.getElementById('chartContainer');
         if (!response.ok){
             console.log(`HTML STATUS ERROR: ${response.status}`)
             throw new Error(`HTML STATUS ERROR: ${response.status}`)
@@ -63,6 +67,7 @@
         const chartLabel = requiredData.map(item => item.skill)
         const chartValues = requiredData.map(item => item.count)
 
+        chartContainer.style.display = 'block';
         if (myChartInstance) {
             myChartInstance.destroy();
         }
@@ -91,6 +96,7 @@
         }
     }
 
+    prepare_chart()
     // function by search
     async function search_route(event) {
         event.preventDefault();
@@ -106,8 +112,11 @@
             const output= document.getElementById('query-val')
             rawData.forEach(group => {
                 const header = document.createElement('h2')
+                const text = document.createElement('p')
+                text.innerHTML = '<strong>Skills:</strong>'
                 header.textContent = group.position
                 output.append(header)
+                output.append(text)
                 const ul = document.createElement('ul')
                 group.tags.forEach(
                     item=>{
