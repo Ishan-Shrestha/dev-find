@@ -9,36 +9,38 @@
 <body>
     <header>DevRadar: FIND THE JOB THAT DESERVES YOU!</header>
     <main>
-        <div id="drag-down">
-            <form id="drag-down-form">
-                <div class="chart-window">
-                <label for="data-points">No of data:</label>
-                <button id="show-butt" type="submit">SEE</button>
-                    <div id="drag-down-menu">
-                        <select name="data-points" id="data-points" class="form-select">
-                            <optgroup label="Numbers Group"> 
-                                <option value="10" selected>10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                            </optgroup>
-                    </select>
+        <div class="flex-container">
+            <div id="drag-down" class="left-side">
+                <form id="drag-down-form">
+                    <div class="chart-window">
+                    <label for="data-points">No of data:</label>
+                    <button id="show-butt" type="submit">SEE</button>
+                        <div id="drag-down-menu">
+                            <select name="data-points" id="data-points" class="form-select">
+                                <optgroup label="Numbers Group"> 
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </optgroup>
+                        </select>
+                        </div>
                     </div>
+                </form>
+                <div id="chartContainer" style="display: none;">
+                    <canvas id="myChart"></canvas>
                 </div>
-            </form>
-            <div id="chartContainer" style="display: none;">
-                <canvas id="myChart"></canvas>
             </div>
-        </div>
 
-        <!-- conatainer for search bar -->
-        <div id="search">
-            <form>
-                <!-- supposed seqarch bar -->
-                <input type="text" placeholder="Search a job" id="job-val">
-                <button type="submit" id="search-butt">Search</button>
-            </form>
-            <div id="query-val">
+            <!-- conatainer for search bar -->
+            <div id="search" class="right-side">
+                <form>
+                    <!-- supposed seqarch bar -->
+                    <input type="text" placeholder="Search a job" id="job-val">
+                    <button type="submit" id="search-butt">Search</button>
+                </form>
+                <div id="query-val">
 
+                </div>
             </div>
         </div>
     </main>

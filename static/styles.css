@@ -12,6 +12,16 @@ header{
     margin-bottom: 70px;
 }
 
+.flex-container{
+    display: flex;
+    height: 100vh;
+}
+
+.left-side, .right-side {
+  flex: 1;      
+  border: #6e738d;       
+}
+
 #chartContainer {
     max-width: 900px;
     margin: 0 auto;
