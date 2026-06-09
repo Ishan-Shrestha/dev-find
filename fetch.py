@@ -13,6 +13,8 @@ logger.setLevel(logging.DEBUG)
 
 # VARIABLES
 API= 'https://remoteok.com/api'
+headers = {'User-Agent': 'Mozilla/5.0'}
+response = requests.get(API, timeout=5, headers=headers)
 data = []
 last_update_time = 0
 
