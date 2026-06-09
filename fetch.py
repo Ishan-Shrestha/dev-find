@@ -32,7 +32,8 @@ def get_data():
             return data
         except Exception as e:
             logger.exception("Failed to retrieve data")
-            return jsonify({"error": "Service unavailable"}), 503
+            print(f"Error: {e}")
+            return f"Unexpected error occurred: {e}"
     else:
         return data
 
