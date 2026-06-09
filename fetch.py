@@ -1,6 +1,7 @@
 import logging
 import requests
 import time
+from flask import jsonify
 
 # LOGGER CONFIG
 logging.basicConfig(
@@ -29,7 +30,7 @@ def get_data():
             return data
         except Exception as e:
             logger.exception("Failed to retrieve data")
-            return f"Unexpected error occured: {e}"
+            return jsonify({"error": "Service unavailable"}), 503
     else:
         return data
 

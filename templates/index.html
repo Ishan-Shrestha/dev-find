@@ -29,6 +29,9 @@
                 <div id="chartContainer" style="display: none;">
                     <canvas id="myChart"></canvas>
                 </div>
+                <div>
+                    <p id="drag-down-error"></p>
+                </div>
             </div>
 
             <!-- conatainer for search bar -->
@@ -40,6 +43,9 @@
                 </form>
                 <div id="query-val">
 
+                </div>
+                <div>
+                    <p id="search-error"></p>
                 </div>
             </div>
         </div>
@@ -54,6 +60,8 @@
     let myChartInstance= null
     
     async function prepare_chart(event) {
+        const error_msg = document.getElementById("drag-down-error")
+        error_msg.textContent = ""
         if (event) event.preventDefault();
         try{
         const response = await fetch('/api/skills');
@@ -62,8 +70,9 @@
         const chartContainer = document.getElementById('chartContainer');
         if (!response.ok){
             console.log(`HTML STATUS ERROR: ${response.status}`)
+            error_msg.textContent = '"error": "Service unavailable"'
             throw new Error(`HTML STATUS ERROR: ${response.status}`)
-        } 
+        } else{
         const rawData = await response.json()
         const requiredData = rawData.slice(0,data_value)
         const chartLabel = requiredData.map(item => item.skill)
@@ -92,7 +101,7 @@
             }
             }
         });
-        console.log("Data retrieved successfully:", rawData)
+        console.log("Data retrieved successfully:", rawData)}
         }catch (error){
             console.log("Fetch operation failed:",error)
         }
@@ -101,6 +110,8 @@
     prepare_chart()
     // function by search
     async function search_route(event) {
+        const search_error = document.getElementById('search-error')
+        search_error.textContent =""
         event.preventDefault();
         try{
             const job_val = document.getElementById('job-val')
@@ -108,8 +119,9 @@
             const response = await fetch(`/api/jobs/search/?query=${encodeURIComponent(searchQuery)}`)
             if (!response.ok){
             console.log(`HTML STATUS ERROR: ${response.status}`)
+            search_error.textContent= '"error": "Service unavailable"'
             throw new Error(`HTML STATUS ERROR: ${response.status}`)
-            } 
+            } else{
             const rawData = await response.json()
             const output= document.getElementById('query-val')
             rawData.forEach(group => {
@@ -129,6 +141,7 @@
                 )
                 output.appendChild(ul)
             })
+        }
             
         }
         catch(error){
